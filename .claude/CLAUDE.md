@@ -9,3 +9,10 @@ This is the ward.codes project.
 
 ## Stack
 <!-- Update this section as the project takes shape -->
+
+## Reference
+
+| Location | Purpose |
+|---|---|
+| `.claude/templates/` | New object templates (RAP stack, table function) |
+| `.claude/knowledge/` | Rules, patterns etc |
