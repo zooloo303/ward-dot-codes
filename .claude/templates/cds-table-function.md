@@ -9,7 +9,7 @@ Complex logic that can't be expressed in pure CDS — tree traversal, iterative 
 ```sql
 @EndUserText.label: '<description>'
 @ClientHandling.type: #CLIENT_INDEPENDENT
-define table function znw_TF_<Name>
+define table function /DRU/TF_<Name>
   with parameters
     @Environment.systemField: #CLIENT
     p_client : abap.clnt,
@@ -19,19 +19,19 @@ define table function znw_TF_<Name>
     key field1 : <type>;
     field2     : <type>;
   }
-  implemented by method znw_CL_<Name>=>get_data;
+  implemented by method /DRU/CL_<Name>=>get_data;
 ```
 
 ### 2. CLAS/OC — Implementing Class
 ```abap
-CLASS znw_cl_<name> DEFINITION PUBLIC FINAL CREATE PUBLIC.
+CLASS /DRU/cl_<name> DEFINITION PUBLIC FINAL CREATE PUBLIC.
   PUBLIC SECTION.
     INTERFACES if_amdp_marker_hdb.
     CLASS-METHODS get_data
-      FOR TABLE FUNCTION znw_tf_<name>.
+      FOR TABLE FUNCTION /DRU/tf_<name>.
 ENDCLASS.
 
-CLASS znw_cl_<name> IMPLEMENTATION.
+CLASS /DRU/cl_<name> IMPLEMENTATION.
   METHOD get_data
     BY DATABASE FUNCTION FOR HDB LANGUAGE SQLSCRIPT
     OPTIONS READ-ONLY

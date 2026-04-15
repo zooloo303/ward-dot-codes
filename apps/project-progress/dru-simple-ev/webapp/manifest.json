@@ -1,0 +1,228 @@
+{
+  "_version": "1.60.0",
+  "sap.app": {
+    "id": "drusimpleev",
+    "type": "application",
+    "i18n": "i18n/i18n.properties",
+    "applicationVersion": {
+      "version": "0.0.1"
+    },
+    "title": "{{appTitle}}",
+    "description": "{{appDescription}}",
+    "resources": "resources.json",
+    "sourceTemplate": {
+      "id": "@sap/generator-fiori:fpm",
+      "version": "1.22.0",
+      "toolsId": "a0609f20-7ab8-4ec9-b51f-597d76cb2ac0"
+    },
+    "dataSources": {
+      "annotation": {
+        "type": "ODataAnnotation",
+        "uri": "annotations/annotation.xml",
+        "settings": {
+          "localUri": "annotations/annotation.xml"
+        }
+      },
+      "mainService": {
+        "uri": "/sap/opu/odata4/dru/sb_simple_ev_04/srvd/dru/sd_simple_ev/0001/",
+        "type": "OData",
+        "settings": {
+          "annotations": [
+            "annotation"
+          ],
+          "odataVersion": "4.0"
+        }
+      }
+    }
+  },
+  "sap.ui": {
+    "technology": "UI5",
+    "icons": {
+      "icon": "",
+      "favIcon": "",
+      "phone": "",
+      "phone@2": "",
+      "tablet": "",
+      "tablet@2": ""
+    },
+    "deviceTypes": {
+      "desktop": true,
+      "tablet": true,
+      "phone": true
+    }
+  },
+  "sap.ui5": {
+    "extends": {
+      "extensions": {
+        "sap.ui.controllerExtensions": {
+          "sap.fe.templates.ListReport.ListReportController": {
+            "controllerName": "drusimpleev.ext.EvStatusChartController"
+          }
+        }
+      }
+    },
+    "flexEnabled": true,
+    "dependencies": {
+      "minUI5Version": "1.120.39",
+      "libs": {
+        "sap.m": {},
+        "sap.ui.core": {},
+        "sap.fe.core": {},
+        "sap.fe.templates": {}
+      }
+    },
+    "contentDensities": {
+      "compact": true,
+      "cozy": true
+    },
+    "models": {
+      "i18n": {
+        "type": "sap.ui.model.resource.ResourceModel",
+        "settings": {
+          "bundleName": "drusimpleev.i18n.i18n"
+        }
+      },
+      "": {
+        "dataSource": "mainService",
+        "preload": true,
+        "settings": {
+          "operationMode": "Server",
+          "autoExpandSelect": true,
+          "earlyRequests": true
+        }
+      },
+      "@i18n": {
+        "type": "sap.ui.model.resource.ResourceModel",
+        "uri": "i18n/i18n.properties"
+      }
+    },
+    "resources": {
+      "css": [
+        { "uri": "ext/EvStatusChart.css" }
+      ]
+    },
+    "routing": {
+      "config": {},
+      "routes": [
+        {
+          "name": "EvEnRollMain",
+          "pattern": "enroll:?query:",
+          "target": "EvEnRollMain"
+        },
+        {
+          "name": "EvEnRollObjectPage",
+          "pattern": "EvEnRoll({key}):?query:",
+          "target": "EvEnRollObjectPage"
+        },
+        {
+          "name": "EvSnapshotMain",
+          "pattern": ":?query:",
+          "target": "EvSnapshotMain"
+        },
+        {
+          "name": "EvSnapshotObjectPage",
+          "pattern": "EvSnapshot({key}):?query:",
+          "target": "EvSnapshotObjectPage"
+        }
+      ],
+      "targets": {
+        "EvEnRollMain": {
+          "type": "Component",
+          "id": "EvEnRollMain",
+          "name": "sap.fe.templates.ListReport",
+          "options": {
+            "settings": {
+              "contextPath": "/EvEnRoll",
+              "variantManagement": "Page",
+              "navigation": {
+                "EvEnRoll": {
+                  "detail": {
+                    "route": "EvEnRollObjectPage"
+                  }
+                }
+              },
+              "controlConfiguration": {
+                "@com.sap.vocabularies.UI.v1.LineItem": {
+                  "tableSettings": {
+                    "type": "ResponsiveTable",
+                    "creationMode": {
+                      "name": "Inline"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "EvEnRollObjectPage": {
+          "type": "Component",
+          "id": "EvEnRollObjectPage",
+          "name": "sap.fe.templates.ObjectPage",
+          "options": {
+            "settings": {
+              "contextPath": "/EvEnRoll",
+              "editableHeaderContent": false
+            }
+          }
+        },
+        "EvSnapshotMain": {
+          "type": "Component",
+          "id": "EvSnapshotMain",
+          "name": "sap.fe.templates.ListReport",
+          "options": {
+            "settings": {
+              "contextPath": "/EvSnapshot",
+              "variantManagement": "Page",
+              "navigation": {
+                "EvSnapshot": {
+                  "detail": {
+                    "route": "EvSnapshotObjectPage"
+                  }
+                }
+              },
+              "content": {
+                "header": {
+                  "visible": true,
+                  "customHeader": {
+                    "expandedHeaderFragment": "drusimpleev.ext.EvStatusChart"
+                  }
+                }
+              },
+              "controlConfiguration": {
+                "@com.sap.vocabularies.UI.v1.LineItem": {
+                  "tableSettings": {
+                    "type": "ResponsiveTable"
+                  },
+                  "actions": {
+                    "ManageEnrolledProjects": {
+                      "press": "drusimpleev.ext.NavHandler.navToEnrollment",
+                      "text": "Manage Enrolled Projects",
+                      "enabled": true,
+                      "visible": true
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "EvSnapshotObjectPage": {
+          "type": "Component",
+          "id": "EvSnapshotObjectPage",
+          "name": "sap.fe.templates.ObjectPage",
+          "options": {
+            "settings": {
+              "contextPath": "/EvSnapshot",
+              "editableHeaderContent": false
+            }
+          }
+        }
+      }
+    }
+  },
+  "sap.fe": {
+    "app": {
+      "enableLazyLoading": true
+    }
+  }
+}

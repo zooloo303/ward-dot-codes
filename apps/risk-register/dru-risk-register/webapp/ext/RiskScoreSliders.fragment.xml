@@ -1,0 +1,42 @@
+<core:FragmentDefinition
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core">
+
+    <HBox alignItems="Center" class="sapUiSmallMarginTop sapUiMediumMarginBeginEnd">
+
+        <!-- Left: sliders -->
+        <VBox>
+            <HBox alignItems="Center" class="sapUiSmallMarginBottom">
+                <Label text="Probability" width="8rem" />
+                <Slider
+                    min="1" max="5" step="1"
+                    value="{Probability}"
+                    enabled="{ui>/isEditable}"
+                    width="16rem"
+                    />
+                <Text text="{Probability}" class="sapUiSmallMarginBegin" />
+            </HBox>
+            <HBox alignItems="Center">
+                <Label text="Impact" width="8rem" />
+                <Slider
+                    min="1" max="5" step="1"
+                    value="{Impact}"
+                    enabled="{ui>/isEditable}"
+                    width="16rem"
+                    />
+                <Text text="{Impact}" class="sapUiSmallMarginBegin" />
+            </HBox>
+        </VBox>
+
+        <!-- Right: score badge -->
+        <VBox class="sapUiLargeMarginBegin" alignItems="Center" justifyContent="Center">
+            <Label text="Risk Score" class="sapUiSmallMarginBottom" />
+            <ObjectStatus
+                text="{RiskScore}"
+                inverted="true"
+                state="{= ${RiskScore} >= 15 ? 'Error' : ${RiskScore} >= 6 ? 'Warning' : 'Success'}" />
+        </VBox>
+
+    </HBox>
+
+</core:FragmentDefinition>

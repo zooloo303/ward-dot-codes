@@ -1,0 +1,183 @@
+<edmx:Edmx xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx" Version="4.0">
+    <edmx:Reference
+        Uri="https://sap.github.io/odata-vocabularies/vocabularies/Common.xml"
+    >
+        <edmx:Include
+            Namespace="com.sap.vocabularies.Common.v1"
+            Alias="Common"
+        />
+    </edmx:Reference>
+    <edmx:Reference
+        Uri="https://sap.github.io/odata-vocabularies/vocabularies/UI.xml"
+    >
+        <edmx:Include Namespace="com.sap.vocabularies.UI.v1" Alias="UI" />
+    </edmx:Reference>
+    <edmx:Reference
+        Uri="https://sap.github.io/odata-vocabularies/vocabularies/Communication.xml"
+    >
+        <edmx:Include
+            Namespace="com.sap.vocabularies.Communication.v1"
+            Alias="Communication"
+        />
+    </edmx:Reference>
+    <edmx:Reference
+        Uri="/sap/opu/odata4/dru/sb_risk_o4/srvd/dru/sd_risk/0001/$metadata"
+    >
+        <edmx:Include
+            Namespace="com.sap.gateway.srvd.dru.sd_risk.v0001"
+            Alias="SAP__self"
+        />
+    </edmx:Reference>
+    <edmx:DataServices>
+        <Schema
+            xmlns="http://docs.oasis-open.org/odata/ns/edm"
+            Namespace="local"
+        >
+
+            <!-- ── Object Page layout: 3 subsections + Linked Objects tab ── -->
+            <Annotations Target="SAP__self.RiskType">
+
+                <Annotation Term="UI.Facets">
+                    <Collection>
+                        <!-- Tab 1: General Information — Risk Details + Financial only -->
+                        <!-- Risk Score subsection is a custom fragment (sliders) added via manifest -->
+                        <Record Type="UI.CollectionFacet">
+                            <PropertyValue
+                                Property="Label"
+                                String="General Information"
+                            />
+                            <PropertyValue Property="ID" String="GeneralInfo" />
+                            <PropertyValue Property="Facets">
+                                <Collection>
+                                    <Record Type="UI.ReferenceFacet">
+                                        <PropertyValue
+                                            Property="Label"
+                                            String="Risk Details"
+                                        />
+                                        <PropertyValue
+                                            Property="ID"
+                                            String="RiskDetails"
+                                        />
+                                        <PropertyValue
+                                            Property="Target"
+                                            AnnotationPath="@UI.FieldGroup#Details"
+                                        />
+                                    </Record>
+                                    <Record Type="UI.ReferenceFacet">
+                                        <PropertyValue
+                                            Property="Label"
+                                            String="Financial Impact"
+                                        />
+                                        <PropertyValue
+                                            Property="ID"
+                                            String="Financial"
+                                        />
+                                        <PropertyValue
+                                            Property="Target"
+                                            AnnotationPath="@UI.FieldGroup#Financial"
+                                        />
+                                    </Record>
+                                </Collection>
+                            </PropertyValue>
+                        </Record>
+                        <!-- Tab 2: Linked SAP Objects (keep as-is from backend) -->
+                        <Record Type="UI.ReferenceFacet">
+                            <PropertyValue
+                                Property="Label"
+                                String="Linked SAP Objects"
+                            />
+                            <PropertyValue
+                                Property="ID"
+                                String="LinkedObjects"
+                            />
+                            <PropertyValue
+                                Property="Target"
+                                AnnotationPath="_LinkedObject/@UI.LineItem"
+                            />
+                        </Record>
+                    </Collection>
+                </Annotation>
+
+                <!-- Field group 1: Risk Details -->
+                <Annotation Term="UI.FieldGroup" Qualifier="Details">
+                    <Record Type="UI.FieldGroupType">
+                        <PropertyValue Property="Data">
+                            <Collection>
+                                <Record Type="UI.DataField">
+                                    <PropertyValue
+                                        Property="Value"
+                                        Path="RiskDesc"
+                                    />
+                                </Record>
+                                <Record Type="UI.DataField">
+                                    <PropertyValue
+                                        Property="Value"
+                                        Path="Status"
+                                    />
+                                </Record>
+                                <Record Type="UI.DataField">
+                                    <PropertyValue
+                                        Property="Value"
+                                        Path="RiskOwner"
+                                    />
+                                </Record>
+                                <Record Type="UI.DataField">
+                                    <PropertyValue
+                                        Property="Value"
+                                        Path="DueDate"
+                                    />
+                                </Record>
+                                <Record Type="UI.DataField">
+                                    <PropertyValue
+                                        Property="Value"
+                                        Path="Category"
+                                    />
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+
+                <!-- Field group 2: Financial Impact -->
+                <Annotation Term="UI.FieldGroup" Qualifier="Financial">
+                    <Record Type="UI.FieldGroupType">
+                        <PropertyValue Property="Data">
+                            <Collection>
+                                <Record Type="UI.DataField">
+                                    <PropertyValue
+                                        Property="Value"
+                                        Path="FinancialImpact"
+                                    />
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+
+            </Annotations>
+
+            <!-- RiskObject: ObjType text display -->
+            <Annotations Target="SAP__self.RiskObjectType/ObjType">
+                <Annotation
+                    Term="Common.ValueListWithFixedValues"
+                    Bool="true"
+                />
+            </Annotations>
+
+            <!-- Dropdown rendering for fixed-value fields -->
+            <Annotations Target="SAP__self.RiskType/Status">
+                <Annotation
+                    Term="Common.ValueListWithFixedValues"
+                    Bool="true"
+                />
+            </Annotations>
+            <Annotations Target="SAP__self.RiskType/Category">
+                <Annotation
+                    Term="Common.ValueListWithFixedValues"
+                    Bool="true"
+                />
+            </Annotations>
+
+        </Schema>
+    </edmx:DataServices>
+</edmx:Edmx>

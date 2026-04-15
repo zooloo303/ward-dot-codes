@@ -1,0 +1,78 @@
+/* ── Simple-EV Status Column Chart ─────────────────────────────────────── */
+
+.druEvChartWrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 16px 40px 12px;
+}
+
+.druEvChartTitle {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--sapContent_LabelColor, #6a6d70);
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  margin-bottom: 14px;
+}
+
+/* One column per status */
+.druEvChartContent {
+  display: flex;
+  flex-direction: row;
+  gap: 24px;
+}
+
+.druEvBarGroup {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 64px;
+}
+
+/* Count sits above the track — always the same height so bars line up */
+.druEvCountLabel {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--sapTextColor, #32363a);
+  height: 28px;
+  line-height: 28px;
+  text-align: center;
+}
+
+/* Fixed-height track; bar grows up from the bottom via absolute positioning */
+.druEvBarTrack {
+  position: relative;
+  width: 44px;
+  height: 80px;
+  background: var(--sapField_Background, #f5f5f5);
+  border-radius: 4px;
+  border: 1px solid var(--sapField_BorderColor, #e0e0e0);
+}
+
+.druEvBar {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  border-radius: 3px 3px 0 0;
+  transition: height 0.35s ease;
+}
+
+.druEvDraft  { background-color: var(--sapWarningColor, #e9730c); }
+.druEvSaved  { background-color: var(--sapInformationColor, #0070f2); }
+.druEvLocked { background-color: var(--sapPositiveColor, #188918); }
+
+.druEvBarLabel {
+  font-size: 0.75rem;
+  color: var(--sapContent_LabelColor, #6a6d70);
+  margin-top: 6px;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.druEvChartTotal {
+  font-size: 0.75rem;
+  color: var(--sapContent_LabelColor, #6a6d70);
+  margin-top: 12px;
+}

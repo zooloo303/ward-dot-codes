@@ -1,0 +1,149 @@
+/* ===== Risk Heatmap ===== */
+.druHeatmapContainer {
+  display: flex;
+  gap: 1rem;
+  align-items: flex-start;
+  padding: 1rem;
+}
+
+.druHeatmapWrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.druHeatmapYLabel {
+  writing-mode: vertical-lr;
+  transform: rotate(180deg);
+  font-size: 0.75rem;
+  color: #6a6d70;
+  margin-right: 0.25rem;
+  align-self: center;
+}
+
+.druHeatmapInner {
+  display: flex;
+  gap: 0;
+}
+
+.druHeatmapRowLabels {
+  display: flex;
+  flex-direction: column-reverse;
+  margin-right: 0.25rem;
+}
+
+.druHeatmapRowLabel {
+  width: 1.5rem;
+  height: 4rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.75rem;
+  font-weight: bold;
+  color: #6a6d70;
+}
+
+.druHeatmapGrid {
+  display: grid;
+  grid-template-columns: repeat(5, 4rem);
+  grid-template-rows: repeat(5, 4rem);
+  gap: 3px;
+}
+
+.druHeatmapCell {
+  width: 4rem;
+  height: 4rem;
+  border-radius: 6px;
+  display: flex;
+  flex-wrap: wrap;
+  align-content: center;
+  justify-content: center;
+  gap: 2px;
+  padding: 4px;
+  box-sizing: border-box;
+  cursor: default;
+  position: relative;
+}
+
+.druCellGreen { background-color: #4CAF50; }
+.druCellAmber { background-color: #FF9800; }
+.druCellRed   { background-color: #F44336; }
+
+.druRiskDot {
+  width: 1rem;
+  height: 1rem;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.9);
+  border: 1px solid rgba(0,0,0,0.2);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.55rem;
+  font-weight: bold;
+  color: #333;
+  transition: transform 0.15s;
+}
+
+.druRiskDot:hover {
+  transform: scale(1.3);
+  background: #fff;
+  z-index: 10;
+}
+
+.druHeatmapColLabels {
+  display: flex;
+  padding-left: 1.75rem;
+}
+
+.druHeatmapColLabel {
+  width: 4rem;
+  text-align: center;
+  font-size: 0.75rem;
+  font-weight: bold;
+  color: #6a6d70;
+  padding-top: 0.25rem;
+}
+
+.druHeatmapXAxisLabel {
+  text-align: center;
+  font-size: 0.75rem;
+  color: #6a6d70;
+  padding-top: 0.1rem;
+  padding-left: 1.75rem;
+}
+
+/* ===== KPI Tiles ===== */
+.druKpiBox {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 0.5rem;
+}
+
+.druKpiTile {
+  padding: 0.75rem 1.25rem;
+  border-radius: 0.5rem;
+  min-width: 7rem;
+  text-align: center;
+}
+
+.druKpiTile.red   { background: #FFEBEE; border-left: 4px solid #F44336; }
+.druKpiTile.amber { background: #FFF3E0; border-left: 4px solid #FF9800; }
+.druKpiTile.green { background: #E8F5E9; border-left: 4px solid #4CAF50; }
+
+.druKpiCount {
+  font-size: 2rem;
+  font-weight: bold;
+  line-height: 1;
+}
+
+.druKpiLabel {
+  font-size: 0.75rem;
+  color: #6a6d70;
+  margin-top: 0.2rem;
+}
+
+.druKpiTile.red   .druKpiCount { color: #F44336; }
+.druKpiTile.amber .druKpiCount { color: #FF9800; }
+.druKpiTile.green .druKpiCount { color: #4CAF50; }

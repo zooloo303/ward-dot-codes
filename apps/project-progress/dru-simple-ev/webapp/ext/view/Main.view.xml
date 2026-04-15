@@ -1,0 +1,14 @@
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:macros="sap.fe.macros"
+    controllerName="drusimpleev.ext.view.Main">
+    <Page id="Main" title="EV Snapshots">
+        <headerContent>
+            <Button text="Manage Enrolled Projects" icon="sap-icon://settings" press=".onNavToEnrollment" />
+        </headerContent>
+        <content>
+            <VBox>
+                <macros:FilterBar id="FilterBar" metaPath="@com.sap.vocabularies.UI.v1.SelectionFields" />
+                <macros:Table id="SnapshotTable" metaPath="@com.sap.vocabularies.UI.v1.LineItem" filterBar="FilterBar" initialLoad="true" creationMode="NewPage" />
+            </VBox>
+        </content>
+    </Page>
+</mvc:View>

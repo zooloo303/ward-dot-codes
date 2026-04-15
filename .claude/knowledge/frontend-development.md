@@ -152,7 +152,7 @@ Root cause: hand-coding Material Request POC wasted 3+ iterations on wrong CDN U
 
 **Never call `getModel()` from `onInit`** — the OData model is not yet bound to the view at that point. `onAfterRendering` is the earliest safe hook for model access.
 
-See full pattern: `projects/risk-register/knowledge/heatmap-fpm-port.md` → "FLP Deployment — FE Version Compatibility"
+See full reusable pattern: `.claude/knowledge/chart-in-list-report.md`
 
 ---
 
@@ -204,16 +204,16 @@ Material,
 
 ### Value Help Lookup Order (MANDATORY)
 
-Before selecting a VH view, ASK user: "Do you want znw_ artifacts or standard SAP only?"
+Before selecting a VH view, ASK user: "Do you want /DRU/ artifacts or standard SAP only?"
 
-1. `znw_I_*VH` -- check `catalogs/my_VH-reference.md` + `my_VH-catalog.json`
-2. `znw_C_*VH`
+1. `/DRU/I_*VH` -- check `catalogs/my_VH-reference.md` + `my_VH-catalog.json`
+2. `/DRU/C_*VH`
 3. `I_*VH` -- SAP standard released
 4. Other standard CDS -- last resort
 
 **NEVER select a VH view from `$TMP` package.**
 
-**NEVER use a non-VH view (e.g. `I_User`) as a value help source.** Generic CDS views lack the `@Search` and `@UI` annotations required for Fiori Elements to wire up the F4 dialog. Always use a dedicated `*VH` view (e.g. `znw_I_UserVH` not `I_User`).
+**NEVER use a non-VH view (e.g. `I_User`) as a value help source.** Generic CDS views lack the `@Search` and `@UI` annotations required for Fiori Elements to wire up the F4 dialog. Always use a dedicated `*VH` view (e.g. `/DRU/I_UserVH` not `I_User`).
 
 ### Key SAP Standard Value Helps
 

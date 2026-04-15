@@ -1,0 +1,28 @@
+{
+  "generationParameters": {
+    "generationDate": "Mon Mar 30 2026 14:15:40 GMT-0700 (Mountain Standard Time)",
+    "generatorPlatform": "CLI",
+    "serviceType": "OData URL",
+    "metadataFilename": "",
+    "serviceUrl": "https://b23app.dassian.org:44300//sap/opu/odata4/dru/sb_risk_o4/srvd/dru/sd_risk/0001/",
+    "appName": "dru-risk-register",
+    "appTitle": "Risk Register",
+    "appDescription": "Druits Risk Register - /DRU/ Production App",
+    "appNamespace": "",
+    "ui5Theme": "sap_horizon",
+    "ui5Version": "1.136.7",
+    "enableEslint": true,
+    "enableTypeScript": false,
+    "showMockDataInfo": true,
+    "generatorVersion": "1.22.0",
+    "template": "List Report Page V4",
+    "generatorName": "SAP Fiori Application Generator",
+    "entityRelatedConfig": [
+      {
+        "type": "Main Entity",
+        "value": "Risk"
+      }
+    ],
+    "launchText": "To launch the generated application, run the following from the generated application root folder:\n\n```\n    npm start\n```"
+  }
+}
